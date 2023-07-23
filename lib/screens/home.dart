@@ -51,10 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
             child: TextField(
               controller: _controller,
               decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 2, color: Colors.black),
-                borderRadius: BorderRadius.circular(5),
-              )),
+                  hintText: 'Add Here',
+                  border: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black, style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(5),
+                  )),
             ),
           ),
           actions: [
@@ -66,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
+                _controller.clear();
               },
               child: const Text('Cancel'),
             ),
