@@ -81,59 +81,110 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pop(context);
   }
 
+  _drawerHeader() {
+    return DrawerHeader(
+      child: Container(
+        padding: const EdgeInsets.all(4),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Colors.deepPurple.shade100.withOpacity(0.4)),
+        child: const Center(
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            CircleAvatar(
+              radius: 40,
+              backgroundColor: Colors.deepPurpleAccent,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 35,
+                backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'),
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'ROHIT RAI',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'rbahingrai143@gmail.com',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ],
+            )
+          ],
+        )),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       initialIndex: 0,
       child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: CustomSearchDelegate());
-              },
-              icon: const Icon(Icons.search),
-            )
-          ],
-          elevation: 2,
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
-          bottom: const TabBar(tabs: [
-            Tab(
-              icon: Icon(Icons.home),
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context, delegate: CustomSearchDelegate());
+                },
+                icon: const Icon(Icons.search),
+              )
+            ],
+            elevation: 2,
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: Text(widget.title),
+            bottom: const TabBar(tabs: [
+              Tab(
+                icon: Icon(Icons.home),
+              ),
+              Tab(
+                icon: Icon(Icons.work),
+              )
+            ]),
+          ),
+          body: TabBarView(
+            children: [
+              firstPage(),
+              const SecondPage(),
+            ],
+          ),
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                onPressed: _incrementCounter,
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              FloatingActionButton(
+                onPressed: dialogBox,
+                tooltip: 'add',
+                backgroundColor: Colors.red[300],
+                child: const Icon(Icons.add),
+              ),
+            ],
+          ),
+          drawer: Drawer(
+            backgroundColor: Colors.deepPurple.shade300,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Container(
+              padding: const EdgeInsets.all(1),
+              child: Column(children: [
+                _drawerHeader(),
+              ]),
             ),
-            Tab(
-              icon: Icon(Icons.work),
-            )
-          ]),
-        ),
-        body: TabBarView(
-          children: [
-            firstPage(),
-            SecondPage(),
-          ],
-        ),
-        floatingActionButton: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FloatingActionButton(
-              onPressed: _incrementCounter,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            FloatingActionButton(
-              onPressed: dialogBox,
-              tooltip: 'add',
-              backgroundColor: Colors.red[300],
-              child: const Icon(Icons.add),
-            ),
-          ],
-        ),
-      ),
+          )),
     );
   }
 }
