@@ -121,6 +121,22 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  _items(String title, Icon icon) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      child: ListTile(
+        onTap: () {},
+        iconColor: Colors.white,
+        textColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        tileColor: Colors.deepPurple.shade500,
+        leading: icon,
+        title: Text(title),
+        trailing: const Icon(Icons.arrow_forward_ios),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -182,6 +198,10 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(1),
               child: Column(children: [
                 _drawerHeader(),
+                _items('Home', const Icon(Icons.home)),
+                _items('Contact Us', const Icon(Icons.call)),
+                _items('Help', const Icon(Icons.help)),
+                _items('Rate', const Icon(Icons.rate_review)),
               ]),
             ),
           )),
